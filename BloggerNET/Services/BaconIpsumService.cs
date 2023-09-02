@@ -7,7 +7,11 @@ namespace BloggerNET.Services;
 public class BaconIpsumService : IContentService
 {
     private readonly HttpClient _httpClient;
-    
+
+    public BaconIpsumService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
     public BaconIpsumService()
     {
         _httpClient = new HttpClient();
