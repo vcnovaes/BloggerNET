@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloggerNET", "BloggerNET\Bl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloggerNETTests", "BloggerNETTests\BloggerNETTests.csproj", "{532846A9-6A9C-436D-8C29-CB9C2918488E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloggerAPI", "BloggerAPI\BloggerAPI.csproj", "{B32AA60D-AD8A-4CA1-AAC9-ECB577EC5772}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{532846A9-6A9C-436D-8C29-CB9C2918488E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{532846A9-6A9C-436D-8C29-CB9C2918488E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{532846A9-6A9C-436D-8C29-CB9C2918488E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B32AA60D-AD8A-4CA1-AAC9-ECB577EC5772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B32AA60D-AD8A-4CA1-AAC9-ECB577EC5772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B32AA60D-AD8A-4CA1-AAC9-ECB577EC5772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B32AA60D-AD8A-4CA1-AAC9-ECB577EC5772}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
