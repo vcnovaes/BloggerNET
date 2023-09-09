@@ -1,6 +1,5 @@
 using System.Runtime.Serialization;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace BloggerNET.Services;
 
@@ -18,7 +17,17 @@ public class BaconIpsumService : IContentService
         _httpClient.BaseAddress = new Uri($"https://baconipsum.com/api/");
     }
 
-    public async Task<List<string>> GetContent(CancellationToken token, uint numberOfParagraphs = 1)
+    public static string ConvertListOfStringsToParagraph( List<string> list)
+    {
+        return list.Aggregate(
+            (s, s1) => s + '\n' + s1
+        );
+    }
+    public async Task<List<string>> GetContent(CancellationToken token)
+    {
+        return await GetContent(token, numberOfParagraphs:1);
+    }
+    public async Task<List<string>> GetContent(CancellationToken token, uint numberOfParagraphs)
     {
         var httpResponse = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/?type=none&paras={numberOfParagraphs}", token);
         

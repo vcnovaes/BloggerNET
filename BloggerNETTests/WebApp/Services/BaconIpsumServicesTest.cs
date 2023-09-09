@@ -1,34 +1,55 @@
 using Moq;
 using Moq.Protected;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using Xunit;
 
-namespace BloggerNETTests.WebApp.Services;
-
-public class BaconIpsumServicesTest
+namespace BloggerNETTests.WebApp.Services
 {
-    private Mock<HttpClient> _httpClientMock;
-    private Mock<HttpResponseMessage> _httpResponseMock;
-    private Mock<HttpContent> _httpResponseContentMock;
-    
-    public BaconIpsumServicesTest()
+    public class BaconIpsumServicesTest
     {
-        _httpClientMock = new Mock<HttpClient>();
-        _httpResponseMock = new Mock<HttpResponseMessage>();
-        _httpResponseContentMock = new Mock<HttpContent>();
-        _httpResponseMock.Object.Content = _httpResponseContentMock.Object;
-    }
-    
-    [Fact]
-    public async Task Should_Return_A_ListOfStrings()
-    {
-        _httpClientMock.Setup<Task<HttpResponseMessage>>(
-                x => x.SendAsync(new HttpRequestMessage())
-            )
-            .ReturnsAsync(_httpResponseMock.Object);
-        _httpResponseContentMock.Setup(x => x.ReadAsStringAsync()).ReturnsAsync("[\"success\"]");
-        var mockedService = new BloggerNET.Services.BaconIpsumService(_httpClientMock.Object);
+        private Mock<HttpMessageHandler> _httpMessageHandlerMock;
+        private HttpClient _httpClient;
 
-        var response = await mockedService.GetContent(CancellationToken.None); 
-        
-        Assert.Equal("success", response.FirstOrDefault());
+        public BaconIpsumServicesTest()
+        {
+            _httpMessageHandlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+            _httpClient = new HttpClient(_httpMessageHandlerMock.Object)
+            {
+                BaseAddress = new Uri("https://baconipsum.com/api/") // Set your base address
+            };
+        }
+
+        [Fact]
+        public async Task Should_Return_A_ListOfStrings()
+        {
+            // Arrange
+            var expectedResponse = "[\"success\"]";
+            var responseContent = new StringContent(expectedResponse);
+
+            _httpMessageHandlerMock
+                .Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>()
+                )
+                .ReturnsAsync(new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = responseContent,
+                });
+
+            var service = new BloggerNET.Services.BaconIpsumService(_httpClient);
+
+            // Act
+            var response = await service.GetContent(CancellationToken.None);
+
+            // Assert
+            Assert.Equal("success", response.FirstOrDefault());
+        }
     }
 }

@@ -1,5 +1,6 @@
 namespace BloggerNET.Services;
 
 public interface IContentService
-{ public Task<List<string>> GetContent(CancellationToken token, uint numberOfParagraphs = 1);
+{ public Task<List<string>> GetContent(CancellationToken token, uint numberOfParagraphs);
+ public Task<List<string>> GetContent(CancellationToken token);
 }

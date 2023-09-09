@@ -16,12 +16,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/vcn/Projects/BloggerNET/BloggerNET
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/vcn/Projects/BloggerNET/BloggerNET/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+[/home/vcn/Projects/BloggerNET/BloggerNET/Views/Home/AboutMe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BYm91dE1lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/vcn/Projects/BloggerNET/BloggerNET/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[/home/vcn/Projects/BloggerNET/BloggerNET/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/vcn/Projects/BloggerNET/BloggerNET/Views/Home/Projects.cshtml]

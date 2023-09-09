@@ -22,7 +22,6 @@ public class HomeController : Controller
         view.ViewData[viewDataLabel] = content.FirstOrDefault();
         return view;
     }
-    
     public async Task<IActionResult>  Index(CancellationToken token)
     {
         var view = View();
@@ -37,14 +36,21 @@ public class HomeController : Controller
         return view;
     }
 
-    public IActionResult Privacy()
+    
+    public async Task<IActionResult> AboutMe(CancellationToken token)
     {
-        return View();
+        var view = View();
+        var rawContent = await _contentProvider.GetContent(token, 4);
+        view.ViewData["Content"] = BaconIpsumService.ConvertListOfStringsToParagraph(rawContent);
+        return view;
     }
     
-    public IActionResult Projects()
+    public async Task<ViewResult> Projects(CancellationToken token)
     {
-        return View();
+        var view = View();
+        var rawContent = await _contentProvider.GetContent(token, 4);
+        view.ViewData["Content"] = BaconIpsumService.ConvertListOfStringsToParagraph(rawContent);
+        return view;
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
